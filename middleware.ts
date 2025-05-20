@@ -1,6 +1,6 @@
 
 
-
+/*
 
 import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server'
 
@@ -20,10 +20,10 @@ export const config = {
 }
 
 
+*/
 
 
 
-/*
 import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server'
 
 const isPublicRoute = createRouteMatcher(['/sign-in(.*)', '/sign-up(.*)'])
@@ -42,4 +42,4 @@ export const config = {
     // Always run for API routes
     '/(api|trpc)(.*)',
   ],
-}*/
+}
