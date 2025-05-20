@@ -106,7 +106,7 @@ export const userProgress = pgTable("user_progress", {
     hearts: integer("hearts").notNull().default(5),
     points: integer("points").notNull().default(0),
     user_expertise: integer("user_expertise").notNull().default(1),
-    gems: integer("points").notNull().default(0),
+    gems: integer("gems").notNull().default(0),
 });
 
 

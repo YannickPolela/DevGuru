@@ -58,7 +58,6 @@ const ShopPage = async () => {
           </p>
           <Items
             hearts={userProgress.hearts}
-            points={userProgress.points}
             gems = {userProgress.gems}
           />
         </div>

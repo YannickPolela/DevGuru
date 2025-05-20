@@ -135,13 +135,13 @@ export const refillHearts = async () => {
     throw new Error("Hearts are already full");
   }  
 
-  if (currentUserProgress.points < GEMS_TO_REFILL) {
-    throw new Error("Not enough points");
+  if (currentUserProgress.gems < GEMS_TO_REFILL) {
+    throw new Error("Not enough gems");
   }
 
   await db.update(userProgress).set({
     hearts: 5,
-    points: currentUserProgress.points - GEMS_TO_REFILL,
+    gems: currentUserProgress.gems - GEMS_TO_REFILL,
   }).where(eq(userProgress.userId, currentUserProgress.userId));
 
   revalidatePath("/shop");
