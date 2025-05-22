@@ -11,12 +11,20 @@ export const getUserProgress = cache(async () => {
         return null;
     }
 
-    const data = await db.query.userProgress.findFirst({
-        where: eq(userProgress.userId, userId),
-        with: {
-            activeCourse: true,
-        }
-    })
+   const data = await db.query.userProgress.findFirst({
+  where: eq(userProgress.userId, userId),
+  with: {
+    activeCourse: {
+      columns: {
+        id: true,
+        title: true,
+        imageSrc: true,
+        // explicitly exclude this line if present
+        // points: false
+      },
+    },
+  },
+});
     return data;
 });
 
