@@ -15,7 +15,8 @@ type Props = {
 
 export const UserProgress = ({activeCourse, 
     points, 
-    hearts, 
+    hearts,
+    gems
     
     }: Props) => {
     return (
@@ -51,7 +52,7 @@ export const UserProgress = ({activeCourse,
                     height = {22} 
                     width = {22} 
                     className="mr-2" />
-                    {hearts}
+                    {gems}
                 </Button>
             </Link>
         </div>
