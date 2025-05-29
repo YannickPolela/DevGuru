@@ -1,3 +1,5 @@
+"use client"
+
 import { Button } from "@/components/ui/button";
 import { SignedIn, SignedOut, ClerkLoaded, ClerkLoading, SignUpButton, SignInButton } from "@clerk/nextjs";
 import { Loader } from "lucide-react";
