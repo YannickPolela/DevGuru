@@ -9,6 +9,7 @@ import { useAudio, useMount, useWindowSize } from "react-use";
 
 import { reduceHearts } from "@/actions/user-progress";
 import { challengeOptions, challenges } from "@/db/schema";
+import { getNextLesson } from "@/actions/next-lesson";
 
 import { QuestionBubble } from "./question-bubble";
 import { Header } from "./header";
@@ -37,21 +38,17 @@ export const Quiz = ({
 }: Props) => {
   const { open: openHeartsModal } = useHeartsModal();
   const { open: openPracticeModal } = usePracticeModal();
-
-
-    useMount(() => {
+  const router = useRouter();
+  const { width, height } = useWindowSize();
+  useMount(() => {
     if (initialPercentage === 100) {
       openPracticeModal();
     }
   });
-  
-  const router = useRouter();
-  const { width, height } = useWindowSize();
-  
 
   const [finishAudio] = useAudio({ src: "/finish.mp3", autoPlay: true });
-  const [correctAudio, _c, correctControls] = useAudio({ src: "/correct.wav" });
-  const [incorrectAudio, _i, incorrectControls] = useAudio({ src: "/incorrect.wav" });
+  const [correctAudio, , correctControls] = useAudio({ src: "/correct.wav" });
+  const [incorrectAudio, , incorrectControls] = useAudio({ src: "/incorrect.wav" });
 
 
   const [hasMounted, setHasMounted] = useState(false);
@@ -81,9 +78,8 @@ export const Quiz = ({
   const options = challenge?.challengeOptions ?? [];
 
   const completedChallenges = challenges.filter((c) => c.completed);
-  const correctCount = completedChallenges.filter((c: any) => c.correct).length;
-  const incorrectCount = completedChallenges.length - correctCount;
-  const awardedPoints = correctCount * 10 + incorrectCount * 5;
+  const correctCount = completedChallenges.length;
+  const awardedPoints = correctCount * 10;
 
   const validChallenges = challenges.filter((c) => c.type !== "INFO");
   const totalValidChallenges = validChallenges.length;
@@ -101,8 +97,18 @@ export const Quiz = ({
 
   const onNext = () => {
     const nextIndex = activeIndex + 1;
-    if (nextIndex >= challenges.length) {
+    const allChallengesCompleted = challenges.every(c => c.completed);
+    
+    if (nextIndex >= challenges.length || allChallengesCompleted) {
       setStatus("completed");
+      // Check for next lesson when all challenges are completed
+      getNextLesson(lessonId).then((nextLesson) => {
+        if (nextLesson) {
+          router.push(`/lesson/${nextLesson.id}`);
+        } else {
+          router.push("/learn");
+        }
+      });
     } else {
       setActiveIndex(nextIndex);
       setStatus("none");
@@ -151,6 +157,18 @@ export const Quiz = ({
 
             if (initialPercentage === 100) {
               setHearts((prev) => Math.min(prev + 1, 5));
+            }
+
+            // If this was the last challenge, check for the next lesson
+            const allChallengesCompleted = updated.every(c => c.completed);
+            if (allChallengesCompleted) {
+              getNextLesson(lessonId).then((nextLesson) => {
+                if (nextLesson) {
+                  router.push(`/lesson/${nextLesson.id}`);
+                } else {
+                  router.push("/learn");
+                }
+              });
             }
           })
           .catch(() => toast.error("Something went wrong. Please try again."));

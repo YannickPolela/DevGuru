@@ -5,14 +5,15 @@ import { Quiz } from "../quiz";
 
 
 type Props = {
-  params:{
-    lessonId: number;
+  params: {
+    lessonid: string;
   };
 };
 
 
-const LessonIdPage = async ({params,}:Props) => {
-  const lessonData = getLesson(params.lessonId);
+const LessonIdPage = async ({params}: Props) => {
+  const lessonId = parseInt(params.lessonid, 10);
+  const lessonData = getLesson(lessonId);
   const userProgressData = getUserProgress();
 
   const [
