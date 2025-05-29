@@ -9,7 +9,7 @@ import Link from "next/link";
 export default function Home() {
 return (
   <div className="max-w-[988px] mx-auto flex-1 w-full flex flex-col lg:flex-row items-center justify-center p-4 gap-2">
-    <div className="relative w-[280px] h-[240px] lg:w-[454px] lg:h-[424px] mb-8 lg:mb-0">
+  <div className="relative w-[350px] h-[350px] lg:w-[500px] lg:h-[500px] mb-8 lg:mb-0">
   <video
     className="w-full h-full object-cover rounded-md"
     autoPlay
