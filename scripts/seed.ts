@@ -167,6 +167,30 @@ const main = async () => {
         order: 3,
         question: "Which statement is missing from the pseudocode to make the sandwich? Fill in the blank space below",
         imageSrc: "/pseudocode2.png"
+      },{
+        id: 4,
+        lessonId: 2,
+        type: "INFO",
+        order: 1,
+        question: "<h1>What is Programming?</h1> <br/> Programming is the process of giving instructions to a computer so it can perform tasks. Just like following a recipe, you write a set of steps for the computer to follow. <br/> These steps are written in a language the computer understands. With programming, you can create apps, websites, games, and tools that solve problems or make life easier. <br> <br> With Devguru you will be able to gain the necessary skills to start your programming journey.",
+        imageSrc: "/programming3.png"
+      },
+      {
+        id: 5,
+        lessonId: 2, 
+        type: "INFO",
+        order: 2,
+        question: "To understand how programming works, we need to understand the concept of pseudocode. <br> A Pseudocode is a simplified step-by-step description of an program that does not use a specific programming language. Instead, it uses simple English language text for human understanding rather than for machine reading. <br><br> For example if you wanted to make a peanut butter and jelly sandwich, the steps carried out to do so would be presented as follows:",
+        imageSrc: "/pseudocode1.png"
+      },
+      
+      {
+        id: 6,
+        lessonId: 2,
+        type: "SELECT",
+        order: 3,
+        question: "Which statement is missing from the pseudocode to make the sandwich? Fill in the blank space below",
+        imageSrc: "/pseudocode2.png"
       },
     ]);
 
@@ -195,6 +219,31 @@ const main = async () => {
       },
       {
         challengeId: 3,
+        correct: false,
+        text: "CONTINUE",
+      },
+      {
+        challengeId: 4,
+        correct: true,
+        text: "Proceed",
+      },
+      {
+        challengeId: 5,
+        correct: true,
+        text: "Proceed",
+      },
+      {
+        challengeId: 6, // Which statement is missing from the pseudocode to make the sandwich"?
+        correct: true,
+        text: "START",
+      },
+      {
+        challengeId: 6,
+        correct: false,
+        text: "END",
+      },
+      {
+        challengeId: 6,
         correct: false,
         text: "CONTINUE",
       },
