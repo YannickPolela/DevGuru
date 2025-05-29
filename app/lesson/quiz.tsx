@@ -39,7 +39,7 @@ export const Quiz = ({
   const { open: openHeartsModal } = useHeartsModal();
   const { open: openPracticeModal } = usePracticeModal();
   const router = useRouter();
-  const { width, height } = useWindowSize();
+  const { width, height } = useWindowSize();  // Remove auto-routing on mount, only show practice modal if needed
   useMount(() => {
     if (initialPercentage === 100) {
       openPracticeModal();
@@ -66,11 +66,9 @@ export const Quiz = ({
   });
   const [selectedOption, setSelectedOption] = useState<number>();
   const [status, setStatus] = useState<"correct" | "wrong" | "none" | "completed">("none");
-
   useEffect(() => {
     setHasMounted(true);
-    if (initialPercentage === 100) openPracticeModal();
-  }, [initialPercentage, openPracticeModal]);
+  }, []);
 
   if (!hasMounted) return null;
 
@@ -94,21 +92,12 @@ export const Quiz = ({
     if (status !== "none") return;
     setSelectedOption(id);
   };
-
   const onNext = () => {
     const nextIndex = activeIndex + 1;
     const allChallengesCompleted = challenges.every(c => c.completed);
     
     if (nextIndex >= challenges.length || allChallengesCompleted) {
       setStatus("completed");
-      // Check for next lesson when all challenges are completed
-      getNextLesson(lessonId).then((nextLesson) => {
-        if (nextLesson) {
-          router.push(`/lesson/${nextLesson.id}`);
-        } else {
-          router.push("/learn");
-        }
-      });
     } else {
       setActiveIndex(nextIndex);
       setStatus("none");
@@ -157,18 +146,10 @@ export const Quiz = ({
 
             if (initialPercentage === 100) {
               setHearts((prev) => Math.min(prev + 1, 5));
-            }
-
-            // If this was the last challenge, check for the next lesson
+            }            // Check if all challenges are completed and show completion screen
             const allChallengesCompleted = updated.every(c => c.completed);
             if (allChallengesCompleted) {
-              getNextLesson(lessonId).then((nextLesson) => {
-                if (nextLesson) {
-                  router.push(`/lesson/${nextLesson.id}`);
-                } else {
-                  router.push("/learn");
-                }
-              });
+              setStatus("completed");
             }
           })
           .catch(() => toast.error("Something went wrong. Please try again."));
@@ -239,8 +220,14 @@ export const Quiz = ({
             <ResultCard variant="hearts" value={hearts} />
             <ResultCard variant="percentage" value={correctPercentage} />
           </div>
-        </div>
-        <Footer lessonId={lessonId} status="completed" onCheck={() => router.push("/learn")} />
+        </div>        <Footer 
+          lessonId={lessonId} 
+          status="completed" 
+          onCheck={() => {
+            // Only navigate to learn page when continue button is clicked
+            router.push("/learn");
+          }} 
+        />
       </>
     );
   }
