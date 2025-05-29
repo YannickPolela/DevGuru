@@ -8,24 +8,22 @@ export default function Home() {
 return (
   <div className="max-w-[988px] mx-auto flex-1 w-full flex flex-col lg:flex-row items-center justify-center p-4 gap-2">
     <div className="relative w-[280px] h-[240px] lg:w-[454px] lg:h-[424px] mb-8 lg:mb-0">
-      <video
-            className="rounded-md"
-            width="300"
-            height="300"
-            autoPlay
-            loop
-            muted
-            playsInline
-            disablePictureInPicture
-            controlsList="nodownload nofullscreen noremoteplayback"
-            onContextMenu={(e) => e.preventDefault()}
-            >
-            <source src="/Mascot_home.mp4" type="video/mp4" />
-            Mascot
-          </video>
+  <video
+    className="w-full h-full object-cover rounded-md"
+    autoPlay
+    loop
+    muted
+    playsInline
+    disablePictureInPicture
+    controlsList="nodownload nofullscreen noremoteplayback"
+    onContextMenu={(e) => e.preventDefault()}
+    aria-label="Animated mascot video"
+  >
+    <source src="/Mascot_home.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+</div>
 
-
-    </div>
     <div className="flex flex-col items-center gap-y-8">
       <h1 className="text-xl lg:text-3xl font-bold text-neutral-600 max-w-[480px] text-center">
         Learn the basics of programming with your very own DevGuru
