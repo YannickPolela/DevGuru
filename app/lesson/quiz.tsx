@@ -83,7 +83,7 @@ export const Quiz = ({
 
 
 
-  const awardedPoints = correctCount * 5;
+  const awardedPoints = 25;
 
   const validChallenges = challenges;
   const totalValidChallenges = validChallenges.length;
@@ -93,6 +93,8 @@ export const Quiz = ({
     totalValidChallenges === 0
       ? 100
       : Math.round((completedValidChallenges / totalValidChallenges) * 100);
+
+
 
 
   const gemsEarned = 0;
@@ -228,7 +230,7 @@ export const Quiz = ({
           <div className="flex items-center gap-x-4 w-full">
             <ResultCard variant="points" value={awardedPoints} />
             <ResultCard variant="hearts" value={hearts} />
-            <ResultCard variant="percentage" value={correctPercentage} />
+            <ResultCard variant="percentage" value={10} />
           </div>
         </div>        <Footer 
           lessonId={lessonId} 
