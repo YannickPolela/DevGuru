@@ -12,18 +12,12 @@ type Props = {
 
 
 const LessonIdPage = async ({params}: Props) => {
+  // Get lesson ID from params and start fetching data
   const lessonId = parseInt(params.lessonid, 10);
-  const lessonData = getLesson(lessonId);
-  const userProgressData = getUserProgress();
-
-  const [
-    lesson,
-    userProgress,
-    
-  ] = await Promise.all([
-    lessonData,
-    userProgressData,
-    
+  
+  const [lesson, userProgress] = await Promise.all([
+    getLesson(lessonId),
+    getUserProgress()
   ]);
 
   if (!lesson || !userProgress) {
