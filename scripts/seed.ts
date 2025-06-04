@@ -168,28 +168,47 @@ const main = async () => {
         question: "Which statement is missing from the pseudocode to make the sandwich? Fill in the blank space below",
         imageSrc: "/pseudocode2.png"
       },
+
        {
         id: 4,
-        lessonId: 2,
+        lessonId: 1,
         type: "INFO",
         order: 4,
-        question: "<h1>What is Programming?</h1> <br/> Programming is the process of giving instructions to a computer so it can perform tasks. Just like following a recipe, you write a set of steps for the computer to follow. <br/> These steps are written in a language the computer understands. With programming, you can create apps, websites, games, and tools that solve problems or make life easier. <br> <br> With Devguru you will be able to gain the necessary skills to start your programming journey.",
+        question: "In a pseudocode, START marks where the algorithm begins while END (or STOP) marks where it finishes.<br> This helps clearly indicate what is and isn't part of the process. <br><br> When pseudocode gets longer, having START and END helps organize the steps and makes it easier to: <br>- Trace the flow of logic <br>- Break problems into smaller routines (like functions)",
+        imageSrc: "/pseudocode1.png"
+      },
+
+      {
+        id: 5,
+        lessonId: 1,
+        type: "INFO",
+        order: 5,
+        question: "When you're learning Python for the first time, it's easy to get stuck on: <br/> Where do the colons go? <br/>Why is indentation so strict? <br/> What’s the exact name of the function?Pseudocode removes all that. <br/> It helps you focus on what the program should do, not how to type it perfectly.",
+        imageSrc: "/programming4.png"
+      },
+
+      {
+        id: 6,
+        lessonId: 2,
+        type: "INFO",
+        order: 6,
+        question: "<h1>What is an an Algorithm?</h1> <br> This is a step-by-step set of instructions that tells a computer how to solve a problem or perform a task. <br/> Just like a recipe tells you how to make a cake, an algorithm tells the computer exactly what to do, in what order, to get the correct result.",
         imageSrc: "/programming3.png"
       },
       {
-        id: 5,
+        id: 7,
         lessonId: 2, 
         type: "INFO",
-        order: 5,
+        order: 7,
         question: "To understand how programming works, we need to understand the concept of pseudocode. <br> A Pseudocode is a simplified step-by-step description of an program that does not use a specific programming language. Instead, it uses simple English language text for human understanding rather than for machine reading. <br><br> For example if you wanted to make a peanut butter and jelly sandwich, the steps carried out to do so would be presented as follows:",
         imageSrc: "/pseudocode1.png"
       },
       
       {
-        id: 6,
+        id: 8,
         lessonId: 2,
         type: "SELECT",
-        order: 6,
+        order: 8,
         question: "Which statement is missing from the pseudocode to make the sandwich? Fill in the blank space below",
         imageSrc: "/pseudocode2.png"
       },
@@ -234,17 +253,27 @@ const main = async () => {
         text: "Proceed",
       },
       {
-        challengeId: 6, // Which statement is missing from the pseudocode to make the sandwich"?
+        challengeId: 6,
+        correct: true,
+        text: "Proceed",
+      },
+      {
+        challengeId: 7,
+        correct: true,
+        text: "Proceed",
+      },
+      {
+        challengeId: 8, // Which statement is missing from the pseudocode to make the sandwich"?
         correct: true,
         text: "START",
       },
       {
-        challengeId: 6,
+        challengeId: 8,
         correct: false,
         text: "END",
       },
       {
-        challengeId: 6,
+        challengeId: 8,
         correct: false,
         text: "CONTINUE",
       },

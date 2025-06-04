@@ -78,10 +78,16 @@ export const Quiz = ({
   const options = challenge?.challengeOptions ?? [];
 
   const completedChallenges = challenges.filter((c) => c.completed);
-  const correctCount = completedChallenges.length;
-  const awardedPoints = correctCount * 10;
 
-  const validChallenges = challenges.filter((c) => c.type !== "INFO");
+
+
+  const correctCount = completedChallenges.length;
+
+
+
+  const awardedPoints = correctCount * 5;
+
+  const validChallenges = challenges;
   const totalValidChallenges = validChallenges.length;
   const completedValidChallenges = validChallenges.filter((c) => c.completed).length;
 
@@ -89,6 +95,10 @@ export const Quiz = ({
     totalValidChallenges === 0
       ? 100
       : Math.round((completedValidChallenges / totalValidChallenges) * 100);
+
+
+  const gemsEarned = 0;
+
 
   const onSelect = (id: number) => {
     if (status !== "none") return;
