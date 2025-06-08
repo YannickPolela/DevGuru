@@ -193,7 +193,7 @@ const main = async () => {
         type: "INFO",
         order: 6,
         question: "<h1>What is an an Algorithm?</h1> <br> This is a step-by-step set of instructions that tells a computer how to solve a problem or perform a task. <br/> Just like a recipe tells you how to make a cake, an algorithm tells the computer exactly what to do, in what order, to get the correct result.",
-        imageSrc: "/programming3.png"
+        imageSrc: "/programming5.png"
       },
       {
         id: 7,
