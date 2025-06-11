@@ -28,7 +28,7 @@ export const UserProgress = ({activeCourse,
                     height = {32}></Image>
                 </Button>
             </Link>
-            <Link href = "/shop">
+            <Link href = "/quests">
                 <Button variant = "ghost" className="text-cyan-500">
                     <Image src ="/points.png" alt = "points" 
                     height = {28} 

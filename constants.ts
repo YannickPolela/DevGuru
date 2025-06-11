@@ -1,4 +1,4 @@
-export const GEMS_TO_REFILL = 10;
+export const GEMS_TO_REFILL = 20;
 
 export const quests = [
   {
