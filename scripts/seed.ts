@@ -118,7 +118,8 @@ const main = async () => {
       ]);
       
 
-      await db.insert(schema.lessons).values([
+     await db.insert(schema.lessons).values([
+        // Unit 1: Basics of Programming
         {
           id: 1,
           unitId: 1, 
@@ -131,14 +132,141 @@ const main = async () => {
           order: 2,
           title: "Algorithms",
         },
-         {
+        {
           id: 3,
           unitId: 1, 
           order: 3,
-          title: "Test",
+          title: "Flow Control Basics",
+        },
+        {
+          id: 4,
+          unitId: 1, 
+          order: 4,
+          title: "Unit 1 Review",
+        },
+
+        // Unit 2: First Python Code
+        {
+          id: 5,
+          unitId: 2,
+          order: 1,
+          title: "Python Syntax Basics",
+        },
+        {
+          id: 6,
+          unitId: 2,
+          order: 2,
+          title: "Your First Python Program",
+        },
+        {
+          id: 7,
+          unitId: 2,
+          order: 3,
+          title: "Understanding Errors",
+        },
+        {
+          id: 8,
+          unitId: 2,
+          order: 4,
+          title: "Unit 2 Review",
+        },
+
+        // Unit 3: Variables and Data Types
+        {
+          id: 9,
+          unitId: 3,
+          order: 1,
+          title: "Introduction to Variables",
+        },
+        {
+          id: 10,
+          unitId: 3,
+          order: 2,
+          title: "Python Data Types",
+        },
+        {
+          id: 11,
+          unitId: 3,
+          order: 3,
+          title: "Type Conversion",
+        },
+        {
+          id: 12,
+          unitId: 3,
+          order: 4,
+          title: "Working with Numbers",
+        },
+        {
+          id: 13,
+          unitId: 3,
+          order: 5,
+          title: "Unit 3 Review",
+        },
+
+        // Unit 4: Conditionals
+        {
+          id: 14,
+          unitId: 4,
+          order: 1,
+          title: "If Statements",
+        },
+        {
+          id: 15,
+          unitId: 4,
+          order: 2,
+          title: "Else and Elif",
+        },
+        {
+          id: 16,
+          unitId: 4,
+          order: 3,
+          title: "Comparison Operators",
+        },
+        {
+          id: 17,
+          unitId: 4,
+          order: 4,
+          title: "Logical Operators",
+        },
+        {
+          id: 18,
+          unitId: 4,
+          order: 5,
+          title: "Unit 4 Review",
+        },
+
+        // Unit 5: Loops
+        {
+          id: 19,
+          unitId: 5,
+          order: 1,
+          title: "While Loops",
+        },
+        {
+          id: 20,
+          unitId: 5,
+          order: 2,
+          title: "For Loops",
+        },
+        {
+          id: 21,
+          unitId: 5,
+          order: 3,
+          title: "Loop Control (break/continue)",
+        },
+        {
+          id: 22,
+          unitId: 5,
+          order: 4,
+          title: "Nested Loops",
+        },
+        {
+          id: 23,
+          unitId: 5,
+          order: 5,
+          title: "Unit 5 Review",
         }
       ]);
-
 
       
 
@@ -175,7 +303,7 @@ const main = async () => {
         type: "INFO",
         order: 4,
         question: "In a pseudocode, START marks where the algorithm begins while END (or STOP) marks where it finishes.<br> This helps clearly indicate what is and isn't part of the process. <br><br> When pseudocode gets longer, having START and END helps organize the steps and makes it easier to: <br>- Trace the flow of logic <br>- Break problems into smaller routines (like functions)",
-        imageSrc: "/pseudocode1.png"
+        imageSrc: "/programming6.png"
       },
 
       {
@@ -183,35 +311,57 @@ const main = async () => {
         lessonId: 1,
         type: "INFO",
         order: 5,
-        question: "When you're learning Python for the first time, it's easy to get stuck on: <br/> Where do the colons go? <br/>Why is indentation so strict? <br/> What’s the exact name of the function?Pseudocode removes all that. <br/> It helps you focus on what the program should do, not how to type it perfectly.",
+        question: "When you're learning Python for the first time, it's easy to get stuck on: <br/><br/> -- Where do the colons go? <br/>Why is indentation so strict? <br/> -- What’s the exact name of the function?<br/><br/>Pseudocode removes all that. It helps you focus on what the program should do, not how to type it perfectly.",
         imageSrc: "/programming4.png"
       },
-
-      {
-        id: 6,
+        {
+              id: 6,
+              lessonId: 1,
+              type: "SELECT",
+              order: 6,
+              question: "What is the purpose of pseudocode?",
+              imageSrc: "/programming7.png"
+            },
+            {
+            id: 7,
+            lessonId: 1,
+            type: "ASSIST",
+            order: 7,
+            question: "Complete the pseudocode for a morning routine:",
+            imageSrc: "/pseudocode3.png" // Image shows incomplete pseudocode
+          },
+          {
+        id: 8,
         lessonId: 2,
         type: "INFO",
-        order: 6,
+        order: 8,
         question: "<h1>What is an an Algorithm?</h1> <br> This is a step-by-step set of instructions that tells a computer how to solve a problem or perform a task. <br/> Just like a recipe tells you how to make a cake, an algorithm tells the computer exactly what to do, in what order, to get the correct result.",
         imageSrc: "/programming5.png"
       },
-      {
-        id: 7,
-        lessonId: 2, 
-        type: "INFO",
-        order: 7,
-        question: "To understand how programming works, we need to understand the concept of pseudocode. <br> A Pseudocode is a simplified step-by-step description of an program that does not use a specific programming language. Instead, it uses simple English language text for human understanding rather than for machine reading. <br><br> For example if you wanted to make a peanut butter and jelly sandwich, the steps carried out to do so would be presented as follows:",
-        imageSrc: "/pseudocode1.png"
-      },
-      
-      {
-        id: 8,
-        lessonId: 2,
-        type: "SELECT",
-        order: 8,
-        question: "Which statement is missing from the pseudocode to make the sandwich? Fill in the blank space below",
-        imageSrc: "/pseudocode2.png"
-      },
+        {
+          id: 9,
+          lessonId: 2,
+          type: "INFO",
+          order: 9,
+          question: "<h2>Algorithm Characteristics</h2><br>Good algorithms have these qualities:<br>- <strong>Clear steps</strong>: Each instruction is precise<br>- <strong>Finite</strong>: It must eventually stop<br>- <strong>Effective</strong>: Solves the problem correctly<br>- <strong>General</strong>: Works for different inputs",
+          imageSrc: "/programming.png"
+        },
+        {
+          id: 10,
+          lessonId: 2,
+          type: "SELECT",
+          order: 10,
+          question: "Which of these is NOT a characteristic of a good algorithm?",
+          imageSrc: "/programming7.png"
+        },
+          {
+          id: 11,
+          lessonId: 2,
+          type: "SELECT",
+          order: 11,
+          question: "Complete the algorithm for making tea:",
+          imageSrc: "/pseudocode4.png" 
+        }
     ]);
 
 
@@ -228,7 +378,7 @@ const main = async () => {
         text: "Proceed",
       },
       {
-        challengeId: 3, // Which statement is missing from the pseudocode to make the sandwich"?
+        challengeId: 3, 
         correct: true,
         text: "START",
       },
@@ -254,29 +404,74 @@ const main = async () => {
       },
       {
         challengeId: 6,
+        correct: false,
+        text: "To write code that computers can execute directly"
+      },
+      {
+        challengeId: 6,
         correct: true,
-        text: "Proceed",
+        text: "To plan and communicate algorithms in human-readable form"
+      },
+      {
+        challengeId: 6,
+        correct: false,
+        text: "To create visual diagrams of programs"
       },
       {
         challengeId: 7,
         correct: true,
+        text: "Wake up"
+      },
+      {
+        challengeId: 7,
+        correct: false,
+        text: "Go to sleep"
+      },
+      {
+        challengeId: 7,
+        correct: false,
+        text: "Eat dinner"
+      },
+      {
+        challengeId: 8,
+        correct: true,
         text: "Proceed",
       },
       {
-        challengeId: 8, // Which statement is missing from the pseudocode to make the sandwich"?
+        challengeId: 9,
         correct: true,
-        text: "START",
+        text: "Proceed",
       },
       {
-        challengeId: 8,
-        correct: false,
-        text: "END",
+          challengeId: 10,
+          correct: false,
+          text: "Finite (stops after completing)"
       },
       {
-        challengeId: 8,
-        correct: false,
-        text: "CONTINUE",
+          challengeId: 10,
+          correct: true,
+          text: "Requires complex math"
       },
+      {
+          challengeId: 10,
+          correct: false,
+          text: "Has clear, precise steps"
+      },
+      {
+          challengeId: 11,
+          correct: true,
+          text: "Boil water"
+      },
+      {
+          challengeId: 11,
+          correct: false,
+          text: "Add ice cubes"
+      },
+      {
+          challengeId: 11,
+          correct: false,
+          text: "Put in microwave"
+      }
     ]);
 
     ;
