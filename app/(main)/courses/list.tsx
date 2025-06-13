@@ -45,7 +45,7 @@ const onClick = (id: number) => {
           title={course.title}
           imageSrc={course.imageSrc}
           onClick={onClick}
-          disabled={(userExpertise ?? 1) < course.id || pending}
+          disabled={(userExpertise ?? 3) < course.id || pending}
           active={course.id === activeCourseId}
         />
       ))}
