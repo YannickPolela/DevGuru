@@ -35,7 +35,8 @@ export const upsertUserProgress = async (courseId: number, shouldRedirect: boole
       activeCourseId: courseId,
       userName: user.firstName || "User",
       userImageSrc: user.imageUrl || "public/profile.png",
-      user_expertise: updatedExpertise,
+      //user_expertise: updatedExpertise,
+      user_expertise: 3,
     });
 
     revalidatePath("/courses");
@@ -50,7 +51,8 @@ export const upsertUserProgress = async (courseId: number, shouldRedirect: boole
     activeCourseId: courseId,
     userName: user.firstName || "User",
     userImageSrc: user.imageUrl || "public/profile.png",
-    user_expertise: courseId || 1,
+    //user_expertise: courseId || 1,
+     user_expertise: 3,
   });
 
   revalidatePath("/courses");
