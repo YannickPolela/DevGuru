@@ -36,7 +36,11 @@ export const Quiz = ({
   initialHearts,
   initialLessonId,
   initialLessonChallenges,
+<<<<<<< HEAD
   isPractice = false,
+=======
+  isPractice
+>>>>>>> e9def4e (Fixing duplicating hearts error 2)
 }: Props) => {
   const { open: openHeartsModal } = useHeartsModal();
   const { open: openPracticeModal } = usePracticeModal();
@@ -125,6 +129,8 @@ export const Quiz = ({
       return;
     }
 
+
+    
     const correctOption = options.find((option) => option.correct);
     if (!correctOption) return;
 
@@ -151,6 +157,7 @@ export const Quiz = ({
             );
             setChallenges(updated);
 
+<<<<<<< HEAD
             if (!isPractice) {
               // First-time completion
               onNext();
@@ -159,6 +166,18 @@ export const Quiz = ({
               setStatus("none");
               setSelectedOption(undefined);
             }
+=======
+            // Clear wrong attempts for this challenge
+            setWrongAttempts(prev => {
+              const newAttempts = {...prev};
+              delete newAttempts[challenge.id];
+              return newAttempts;
+            });
+
+          if (isPractice && hearts < 5) {
+            setHearts((prev) => Math.min(prev + 1, 5));
+          }
+>>>>>>> e9def4e (Fixing duplicating hearts error 2)
           })
           .catch(() => toast.error("Something went wrong. Please try again."));
       });
