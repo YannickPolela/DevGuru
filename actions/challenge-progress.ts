@@ -16,8 +16,6 @@ export const upsertChallengeProgress = async (challengeId: number) => {
   }
 
   const currentUserProgress = await getUserProgress();
-
-
   if (!currentUserProgress) {
     throw new Error("User progress not found");
   }
@@ -39,70 +37,49 @@ export const upsertChallengeProgress = async (challengeId: number) => {
     ),
   });
 
-  const isPractice = !!existingChallengeProgress;
+  // Only consider it practice if the challenge was previously completed
+  const isPractice = existingChallengeProgress?.completed || false;
 
-  if (
-    currentUserProgress.hearts === 0 && 
-    !isPractice 
-  ) {
+  if (currentUserProgress.hearts === 0 && !isPractice) {
     return { error: "hearts" };
   }
 
   if (isPractice) {
-    await db.update(challengeProgress).set({
-      completed: true,
-    })
-    .where(
-      eq(challengeProgress.id, existingChallengeProgress.id)
-    );
+    // Practice session - only update points, no hearts or gems
+    await db.update(userProgress).set({
+      points: currentUserProgress.points + 1,
+    }).where(eq(userProgress.userId, userId));
 
- if (currentUserProgress.hearts < 5) {
-      await db.update(userProgress).set({
-        hearts: Math.min(currentUserProgress.hearts + 1, 5),
-        points: currentUserProgress.points + 5,
-      }).where(eq(userProgress.userId, userId));
-    } else {
-      // Just update points if hearts are already full
-      await db.update(userProgress).set({
-        points: currentUserProgress.points + 5,
-      }).where(eq(userProgress.userId, userId));
-    }
-    revalidatePath("/learn");
-    revalidatePath("/lesson");
-    revalidatePath("/quests");
-    revalidatePath("/leaderboard");
-    revalidatePath(`/lesson/${lessonId}`);
+    revalidatePaths(lessonId);
     return;
   }
 
-  await db.insert(challengeProgress).values({
-    challengeId,
-    userId,
-    completed: true,
-  });
-
-
-
-  /*
-
-  const nextIndex = activeIndex + 1;
-  const allChallengesCompleted = challenges.every(c => c.completed);
-  
-  if (nextIndex >= challenges.length || allChallengesCompleted) {
-    setStatus("completed");
+  // First-time completion
+  if (existingChallengeProgress) {
+    await db.update(challengeProgress).set({
+      completed: true,
+    }).where(eq(challengeProgress.id, existingChallengeProgress.id));
   } else {
-  
+    await db.insert(challengeProgress).values({
+      challengeId,
+      userId,
+      completed: true,
+    });
   }
-  */
 
+  // Only give rewards for first-time completion
   await db.update(userProgress).set({
-    points: currentUserProgress.points + 5,
-    gems: currentUserProgress.gems + 2,
+    points: currentUserProgress.points + 10,
+    gems: currentUserProgress.gems + 1,
   }).where(eq(userProgress.userId, userId));
 
-  revalidatePath("/learn");
-revalidatePath("/quests");
-revalidatePath("/leaderboard");
-revalidatePath(`/lesson/${lessonId}`);
-
+  revalidatePaths(lessonId);
 };
+
+function revalidatePaths(lessonId: number) {
+  revalidatePath("/learn");
+  revalidatePath("/lesson");
+  revalidatePath("/quests");
+  revalidatePath("/leaderboard");
+  revalidatePath(`/lesson/${lessonId}`);
+}

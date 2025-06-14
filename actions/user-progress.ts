@@ -62,59 +62,63 @@ export const upsertUserProgress = async (courseId: number, shouldRedirect: boole
   }
 };
 
-  export const reduceHearts = async (challengeId: number) => {
-    const { userId } = await auth();
+ export const reduceHearts = async (challengeId: number) => {
+  const { userId } = await auth();
   
-    if (!userId) {
-      throw new Error("Unauthorized");
-    }
-  
-    const currentUserProgress = await getUserProgress();
-  
-    const challenge = await db.query.challenges.findFirst({
-      where: eq(challenges.id, challengeId),
-    });
-  
-    if (!challenge) {
-      throw new Error("Challenge not found");
-    }
-  
-    const lessonId = challenge.lessonId;
-  
-    const existingChallengeProgress = await db.query.challengeProgress.findFirst({
-      where: and(
-        eq(challengeProgress.userId, userId),
-        eq(challengeProgress.challengeId, challengeId),
-      ),
-    });
-  
-    const isPractice = !!existingChallengeProgress;
-  
-    if (isPractice) {
-      return { error: "practice" }; 
-    }
-  
-    if (!currentUserProgress) {
-      throw new Error("User progress not found");
-    }
-  
-    if (currentUserProgress.hearts === 0) {
-      return { error: "hearts" };
-    }
-  
-    
-    await db.update(userProgress).set({
-      hearts: Math.max(currentUserProgress.hearts - 1, 0),
-    }).where(eq(userProgress.userId, userId));
-  
+  if (!userId) {
+    throw new Error("Unauthorized");
+  }
 
+  const currentUserProgress = await getUserProgress();
+  if (!currentUserProgress) {
+    throw new Error("User progress not found");
+  }
+
+  const challenge = await db.query.challenges.findFirst({
+    where: eq(challenges.id, challengeId),
+  });
+
+  if (!challenge) {
+    throw new Error("Challenge not found");
+  }
+
+  const lessonId = challenge.lessonId;
+
+  // Check if this challenge was previously completed
+  const existingChallengeProgress = await db.query.challengeProgress.findFirst({
+    where: and(
+      eq(challengeProgress.userId, userId),
+      eq(challengeProgress.challengeId, challengeId),
+    ),
+  });
+
+  // Don't reduce hearts for practice attempts
+  if (existingChallengeProgress?.completed) {
+    return { error: "practice" };
+  }
+
+  if (currentUserProgress.hearts === 0) {
+    return { error: "hearts" };
+  }
+
+  await db.update(userProgress).set({
+    hearts: Math.max(currentUserProgress.hearts - 1, 0),
+  }).where(eq(userProgress.userId, userId));
+
+  // Mark as attempted but not completed
+  if (existingChallengeProgress) {
+    await db.update(challengeProgress).set({
+      correct: false,
+    }).where(eq(challengeProgress.id, existingChallengeProgress.id));
+  } else {
     await db.insert(challengeProgress).values({
       challengeId,
       userId,
-      completed: true,
+      completed: false,
       correct: false,
     });
-  
+  }
+
     revalidatePath("/shop");
     revalidatePath("/learn");
     revalidatePath("/quests");
