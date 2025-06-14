@@ -43,7 +43,7 @@ export const ExitModal = () => {
             controlsList="nodownload nofullscreen noremoteplayback"
             onContextMenu={(e) => e.preventDefault()}
             >
-            <source src="/Mascot_celebration.mp4" type="video/mp4" />
+            <source src="/Mascot_sad.mp4" type="video/mp4" />
             Mascot
           </video>
 

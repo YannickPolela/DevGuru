@@ -76,10 +76,16 @@ export const Quiz = ({
   const options = challenge?.challengeOptions ?? [];
 
   const completedChallenges = challenges.filter((c) => c.completed);
-  const correctCount = completedChallenges.length;
-  const awardedPoints = correctCount * 10;
 
-  const validChallenges = challenges.filter((c) => c.type !== "INFO");
+
+
+  const correctCount = completedChallenges.length;
+
+
+
+  const awardedPoints = 25;
+
+  const validChallenges = challenges;
   const totalValidChallenges = validChallenges.length;
   const completedValidChallenges = validChallenges.filter((c) => c.completed).length;
 
@@ -87,6 +93,12 @@ export const Quiz = ({
     totalValidChallenges === 0
       ? 100
       : Math.round((completedValidChallenges / totalValidChallenges) * 100);
+
+
+
+
+  const gemsEarned = 0;
+
 
   const onSelect = (id: number) => {
     if (status !== "none") return;
@@ -218,7 +230,7 @@ export const Quiz = ({
           <div className="flex items-center gap-x-4 w-full">
             <ResultCard variant="points" value={awardedPoints} />
             <ResultCard variant="hearts" value={hearts} />
-            <ResultCard variant="percentage" value={correctPercentage} />
+            <ResultCard variant="percentage" value={10} />
           </div>
         </div>        <Footer 
           lessonId={lessonId} 

@@ -70,14 +70,6 @@ export const upsertChallengeProgress = async (challengeId: number) => {
       (c.challengeProgress && c.challengeProgress.some(p => p.completed))
     );
 
-    if (allChallengesCompleted) {
-      // Give rewards at the end of practice
-      await db.update(userProgress).set({
-        hearts: currentUserProgress.hearts + 1,
-        points: currentUserProgress.points + 10,
-      }).where(eq(userProgress.userId, userId));
-    }
-
     revalidatePath("/learn");
     revalidatePath("/lesson");
     revalidatePath("/quests");
@@ -94,11 +86,21 @@ export const upsertChallengeProgress = async (challengeId: number) => {
 
 
 
+  /*
 
+  const nextIndex = activeIndex + 1;
+  const allChallengesCompleted = challenges.every(c => c.completed);
   
+  if (nextIndex >= challenges.length || allChallengesCompleted) {
+    setStatus("completed");
+  } else {
+  
+  }
+  */
 
   await db.update(userProgress).set({
-    points: currentUserProgress.points + 10,
+    points: currentUserProgress.points + 5,
+    gems: currentUserProgress.gems + 10,
   }).where(eq(userProgress.userId, userId));
 
   revalidatePath("/learn");
