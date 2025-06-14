@@ -46,7 +46,15 @@ export const upsertChallengeProgress = async (challengeId: number) => {
     !isPractice 
   ) {
     return { error: "hearts" };
-  }
+  }  // Get all challenges for this lesson to check if this is the last one
+  const lessonChallenges = await db.query.challenges.findMany({
+    where: eq(challenges.lessonId, lessonId),
+    with: {
+      challengeProgress: {
+        where: eq(challengeProgress.userId, userId)
+      }
+    }
+  });
 
   if (isPractice) {
     await db.update(challengeProgress).set({
@@ -55,18 +63,27 @@ export const upsertChallengeProgress = async (challengeId: number) => {
     .where(
       eq(challengeProgress.id, existingChallengeProgress.id)
     );
+    
+    // Check if this was the last challenge in practice mode
+    const allChallengesCompleted = lessonChallenges.every(c => 
+      c.id === challengeId || 
+      (c.challengeProgress && c.challengeProgress.some(p => p.completed))
+    );
 
-    await db.update(userProgress).set({
-      hearts: Math.min(currentUserProgress.hearts + 1, 5),
-      points: currentUserProgress.points + 10,
-    }).where(eq(userProgress.userId, userId));
+    if (allChallengesCompleted) {
+      // Give rewards at the end of practice
+      await db.update(userProgress).set({
+        hearts: currentUserProgress.hearts + 1,
+        points: currentUserProgress.points + 10,
+      }).where(eq(userProgress.userId, userId));
+    }
 
     revalidatePath("/learn");
     revalidatePath("/lesson");
     revalidatePath("/quests");
     revalidatePath("/leaderboard");
     revalidatePath(`/lesson/${lessonId}`);
-    return;
+    return { isPractice: true, completed: allChallengesCompleted };
   }
 
   await db.insert(challengeProgress).values({
