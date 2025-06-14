@@ -28,7 +28,6 @@ type Props = {
     completed: boolean;
     challengeOptions: typeof challengeOptions.$inferSelect[];
   })[];
-  isPractice?: boolean;
 };
 
 export const Quiz = ({
@@ -36,11 +35,6 @@ export const Quiz = ({
   initialHearts,
   initialLessonId,
   initialLessonChallenges,
-<<<<<<< HEAD
-  isPractice = false,
-=======
-  isPractice
->>>>>>> e9def4e (Fixing duplicating hearts error 2)
 }: Props) => {
   const { open: openHeartsModal } = useHeartsModal();
   const { open: openPracticeModal } = usePracticeModal();
@@ -68,8 +62,18 @@ export const Quiz = ({
   const [selectedOption, setSelectedOption] = useState<number>();
   const [status, setStatus] = useState<"correct" | "wrong" | "none" | "completed">("none");
   
+  // Track wrong attempts per challenge
+  const [wrongAttempts, setWrongAttempts] = useState<Record<number, number>>({});
+  
+  // Get active index from localStorage or find first uncompleted challenge
   const [activeIndex, setActiveIndex] = useState(() => {
-    const uncompletedIndex = challenges.findIndex((challenge) => !challenge.completed);
+    if (typeof window !== 'undefined') {
+      const savedIndex = localStorage.getItem(`lesson-${initialLessonId}-activeIndex`);
+      if (savedIndex) return parseInt(savedIndex);
+    }
+    const uncompletedIndex = initialLessonChallenges.findIndex(
+      (challenge) => !challenge.completed
+    );
     return uncompletedIndex === -1 ? 0 : uncompletedIndex;
   });
 
@@ -77,13 +81,12 @@ export const Quiz = ({
     setHasMounted(true);
   }, []);
 
-  // Persist progress in localStorage
+  // Persist active index to localStorage
   useEffect(() => {
     if (hasMounted) {
       localStorage.setItem(`lesson-${lessonId}-activeIndex`, activeIndex.toString());
-      localStorage.setItem(`lesson-${lessonId}-hearts`, hearts.toString());
     }
-  }, [activeIndex, hearts, lessonId, hasMounted]);
+  }, [activeIndex, lessonId, hasMounted]);
 
   if (!hasMounted) return null;
 
@@ -91,8 +94,12 @@ export const Quiz = ({
   const options = challenge?.challengeOptions ?? [];
   const completedChallenges = challenges.filter((c) => c.completed);
   const correctCount = completedChallenges.length;
-  const awardedPoints = 10; // Increased from 5 to 10 for first-time completion
-  const practicePoints = 1; // Reduced points for practice
+  const awardedPoints = 25;
+  const validChallenges = challenges;
+  const totalValidChallenges = validChallenges.length;
+  const completedValidChallenges = validChallenges.filter((c) => c.completed).length;
+  const correctPercentage = totalValidChallenges === 0 ? 100 : Math.round((completedValidChallenges / totalValidChallenges) * 100);
+  const gemsEarned = 0;
 
   const onSelect = (id: number) => {
     if (status !== "none") return;
@@ -107,7 +114,6 @@ export const Quiz = ({
       setStatus("completed");
       // Clear saved progress when lesson is completed
       localStorage.removeItem(`lesson-${lessonId}-activeIndex`);
-      localStorage.removeItem(`lesson-${lessonId}-hearts`);
     } else {
       setActiveIndex(nextIndex);
       setStatus("none");
@@ -129,8 +135,6 @@ export const Quiz = ({
       return;
     }
 
-
-    
     const correctOption = options.find((option) => option.correct);
     if (!correctOption) return;
 
@@ -145,28 +149,14 @@ export const Quiz = ({
 
             correctControls.play();
             setStatus("correct");
-            
-            // Update percentage based on first-time completions only
-            if (!isPractice) {
-              setPercentage((prev) => prev + 100 / challenges.length);
-            }
+            setPercentage((prev) => prev + 100 / challenges.length);
 
-            // Update local challenge state
+            // Mark as completed only when answered correctly
             const updated = challenges.map((c, i) =>
               i === activeIndex ? { ...c, completed: true } : c
             );
             setChallenges(updated);
 
-<<<<<<< HEAD
-            if (!isPractice) {
-              // First-time completion
-              onNext();
-            } else {
-              // Practice mode - reset current challenge
-              setStatus("none");
-              setSelectedOption(undefined);
-            }
-=======
             // Clear wrong attempts for this challenge
             setWrongAttempts(prev => {
               const newAttempts = {...prev};
@@ -174,10 +164,9 @@ export const Quiz = ({
               return newAttempts;
             });
 
-          if (isPractice && hearts < 5) {
-            setHearts((prev) => Math.min(prev + 1, 5));
-          }
->>>>>>> e9def4e (Fixing duplicating hearts error 2)
+            if (initialPercentage === 100) {
+              setHearts((prev) => Math.min(prev + 1, 5));
+            }
           })
           .catch(() => toast.error("Something went wrong. Please try again."));
       });
@@ -190,16 +179,18 @@ export const Quiz = ({
               return;
             }
 
-            if (response?.error === "practice") {
-              // In practice mode, wrong answers don't reduce hearts
-              incorrectControls.play();
-              setStatus("wrong");
-              return;
-            }
-
             incorrectControls.play();
             setStatus("wrong");
-            setHearts((prev) => Math.max(prev - 1, 0));
+
+            // Track wrong attempts
+            setWrongAttempts(prev => ({
+              ...prev,
+              [challenge.id]: (prev[challenge.id] || 0) + 1
+            }));
+
+            if (!response?.error) {
+              setHearts((prev) => Math.max(prev - 1, 0));
+            }
           })
           .catch(() => toast.error("Something went wrong. Please try again."));
       });
@@ -225,6 +216,7 @@ export const Quiz = ({
             onContextMenu={(e) => e.preventDefault()}
           >
             <source src="/Mascot_celebration.mp4" type="video/mp4" />
+            Mascot
           </video>
           <video
             className="rounded-md block lg:hidden"
@@ -239,17 +231,16 @@ export const Quiz = ({
             onContextMenu={(e) => e.preventDefault()}
           >
             <source src="/Mascot_celebration.mp4" type="video/mp4" />
+            Mascot
           </video>
 
           <h1 className="text-xl lg:text-3xl font-bold text-neutral-700">
             Great job! <br /> You&apos;ve completed the lesson.
           </h1>
           <div className="flex items-center gap-x-4 w-full">
-            <ResultCard 
-              variant="points" 
-              value={isPractice ? practicePoints * correctCount : awardedPoints} 
-            />
+            <ResultCard variant="points" value={awardedPoints} />
             <ResultCard variant="hearts" value={hearts} />
+            <ResultCard variant="percentage" value={correctPercentage} />
           </div>
         </div>
         <Footer 
@@ -272,7 +263,7 @@ export const Quiz = ({
       <Header 
         hearts={hearts} 
         percentage={percentage} 
-        
+        hasActiveSubscription={initialPercentage === 100}
       />
       <div className="flex-1">
         <div className="h-full flex items-center justify-center">
