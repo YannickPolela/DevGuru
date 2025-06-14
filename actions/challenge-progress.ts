@@ -77,8 +77,17 @@ export const upsertChallengeProgress = async (challengeId: number) => {
 
 
 
+  /*
 
+  const nextIndex = activeIndex + 1;
+  const allChallengesCompleted = challenges.every(c => c.completed);
   
+  if (nextIndex >= challenges.length || allChallengesCompleted) {
+    setStatus("completed");
+  } else {
+  
+  }
+  */
 
   await db.update(userProgress).set({
     points: currentUserProgress.points + 5,

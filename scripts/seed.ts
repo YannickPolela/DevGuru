@@ -311,7 +311,7 @@ const main = async () => {
         lessonId: 1,
         type: "INFO",
         order: 5,
-        question: "When you're learning Python for the first time, it's easy to get stuck on: <br/><br/> -- Where do the colons go? <br/>Why is indentation so strict? <br/> -- What’s the exact name of the function?<br/><br/>Pseudocode removes all that. It helps you focus on what the program should do, not how to type it perfectly.",
+        question: "When you're learning Python for the first time, it's easy to get stuck on: <br/><br/> -- Where do the colons go? <br/> -- Why is indentation so strict? <br/> -- What’s the exact name of the function?<br/><br/>Pseudocode removes all that. It helps you focus on what the program should do, not how to type it perfectly.",
         imageSrc: "/programming4.png"
       },
         {
