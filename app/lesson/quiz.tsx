@@ -59,16 +59,34 @@ export const Quiz = ({
     return initialPercentage === 100 ? 0 : initialPercentage;
   });
   const [challenges, setChallenges] = useState(initialLessonChallenges);
-  const [activeIndex, setActiveIndex] = useState(() => {
-    const uncompletedIndex = challenges.findIndex((challenge) => !challenge.completed);
-    return uncompletedIndex === -1 ? 0 : uncompletedIndex;
-  });
   const [selectedOption, setSelectedOption] = useState<number>();
   const [status, setStatus] = useState<"correct" | "wrong" | "none" | "completed">("none");
   
+  // Track wrong attempts per challenge
+  const [wrongAttempts, setWrongAttempts] = useState<Record<number, number>>({});
+  
+  // Get active index from localStorage or find first uncompleted challenge
+  const [activeIndex, setActiveIndex] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const savedIndex = localStorage.getItem(`lesson-${initialLessonId}-activeIndex`);
+      if (savedIndex) return parseInt(savedIndex);
+    }
+    const uncompletedIndex = initialLessonChallenges.findIndex(
+      (challenge) => !challenge.completed
+    );
+    return uncompletedIndex === -1 ? 0 : uncompletedIndex;
+  });
+
   useEffect(() => {
     setHasMounted(true);
   }, []);
+
+  // Persist active index to localStorage
+  useEffect(() => {
+    if (hasMounted) {
+      localStorage.setItem(`lesson-${lessonId}-activeIndex`, activeIndex.toString());
+    }
+  }, [activeIndex, lessonId, hasMounted]);
 
   if (!hasMounted) return null;
 
@@ -94,6 +112,8 @@ export const Quiz = ({
     
     if (nextIndex >= challenges.length || allChallengesCompleted) {
       setStatus("completed");
+      // Clear saved progress when lesson is completed
+      localStorage.removeItem(`lesson-${lessonId}-activeIndex`);
     } else {
       setActiveIndex(nextIndex);
       setStatus("none");
@@ -131,11 +151,18 @@ export const Quiz = ({
             setStatus("correct");
             setPercentage((prev) => prev + 100 / challenges.length);
 
-            // Only mark as completed when answered correctly
+            // Mark as completed only when answered correctly
             const updated = challenges.map((c, i) =>
-              i === activeIndex ? { ...c, completed: true, correct: true } : c
+              i === activeIndex ? { ...c, completed: true } : c
             );
             setChallenges(updated);
+
+            // Clear wrong attempts for this challenge
+            setWrongAttempts(prev => {
+              const newAttempts = {...prev};
+              delete newAttempts[challenge.id];
+              return newAttempts;
+            });
 
             if (initialPercentage === 100) {
               setHearts((prev) => Math.min(prev + 1, 5));
@@ -154,6 +181,12 @@ export const Quiz = ({
 
             incorrectControls.play();
             setStatus("wrong");
+
+            // Track wrong attempts
+            setWrongAttempts(prev => ({
+              ...prev,
+              [challenge.id]: (prev[challenge.id] || 0) + 1
+            }));
 
             if (!response?.error) {
               setHearts((prev) => Math.max(prev - 1, 0));
@@ -205,9 +238,9 @@ export const Quiz = ({
             Great job! <br /> You&apos;ve completed the lesson.
           </h1>
           <div className="flex items-center gap-x-4 w-full">
-            <ResultCard variant="points" value={challenges.length * 5} />
+            <ResultCard variant="points" value={awardedPoints} />
             <ResultCard variant="hearts" value={hearts} />
-            <ResultCard variant="percentage" value={challenges.length * 2} />
+            <ResultCard variant="percentage" value={correctPercentage} />
           </div>
         </div>
         <Footer 
@@ -227,7 +260,11 @@ export const Quiz = ({
     <>
       {incorrectAudio}
       {correctAudio}
-      <Header hearts={hearts} percentage={percentage} />
+      <Header 
+        hearts={hearts} 
+        percentage={percentage} 
+        
+      />
       <div className="flex-1">
         <div className="h-full flex items-center justify-center">
           <div className="lg:min-h-[350px] lg:w-[600px] w-full px-6 lg:px-0 flex flex-col gap-y-12">
