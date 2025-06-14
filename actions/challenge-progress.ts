@@ -91,7 +91,7 @@ export const upsertChallengeProgress = async (challengeId: number) => {
 
   await db.update(userProgress).set({
     points: currentUserProgress.points + 5,
-    gems: currentUserProgress.gems + 10,
+    gems: currentUserProgress.gems + 2,
   }).where(eq(userProgress.userId, userId));
 
   revalidatePath("/learn");

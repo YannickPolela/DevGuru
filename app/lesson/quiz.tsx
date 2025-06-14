@@ -39,7 +39,8 @@ export const Quiz = ({
   const { open: openHeartsModal } = useHeartsModal();
   const { open: openPracticeModal } = usePracticeModal();
   const router = useRouter();
-  const { width, height } = useWindowSize();  // Remove auto-routing on mount, only show practice modal if needed
+  const { width, height } = useWindowSize();
+
   useMount(() => {
     if (initialPercentage === 100) {
       openPracticeModal();
@@ -50,9 +51,7 @@ export const Quiz = ({
   const [correctAudio, , correctControls] = useAudio({ src: "/correct.wav" });
   const [incorrectAudio, , incorrectControls] = useAudio({ src: "/incorrect.wav" });
 
-
   const [hasMounted, setHasMounted] = useState(false);
-
   const [pending, startTransition] = useTransition();
   const [lessonId] = useState(initialLessonId);
   const [hearts, setHearts] = useState(initialHearts);
@@ -60,12 +59,13 @@ export const Quiz = ({
     return initialPercentage === 100 ? 0 : initialPercentage;
   });
   const [challenges, setChallenges] = useState(initialLessonChallenges);
-    const [activeIndex, setActiveIndex] = useState(() => {
+  const [activeIndex, setActiveIndex] = useState(() => {
     const uncompletedIndex = challenges.findIndex((challenge) => !challenge.completed);
     return uncompletedIndex === -1 ? 0 : uncompletedIndex;
   });
   const [selectedOption, setSelectedOption] = useState<number>();
   const [status, setStatus] = useState<"correct" | "wrong" | "none" | "completed">("none");
+  
   useEffect(() => {
     setHasMounted(true);
   }, []);
@@ -74,36 +74,20 @@ export const Quiz = ({
 
   const challenge = challenges[activeIndex];
   const options = challenge?.challengeOptions ?? [];
-
   const completedChallenges = challenges.filter((c) => c.completed);
-
-
-
   const correctCount = completedChallenges.length;
-
-
-
   const awardedPoints = 25;
-
   const validChallenges = challenges;
   const totalValidChallenges = validChallenges.length;
   const completedValidChallenges = validChallenges.filter((c) => c.completed).length;
-
-  const correctPercentage =
-    totalValidChallenges === 0
-      ? 100
-      : Math.round((completedValidChallenges / totalValidChallenges) * 100);
-
-
-
-
+  const correctPercentage = totalValidChallenges === 0 ? 100 : Math.round((completedValidChallenges / totalValidChallenges) * 100);
   const gemsEarned = 0;
-
 
   const onSelect = (id: number) => {
     if (status !== "none") return;
     setSelectedOption(id);
   };
+  
   const onNext = () => {
     const nextIndex = activeIndex + 1;
     const allChallengesCompleted = challenges.every(c => c.completed);
@@ -117,8 +101,6 @@ export const Quiz = ({
     }
   };
 
-
-
   const onContinue = () => {
     if (!selectedOption) return;
 
@@ -130,8 +112,6 @@ export const Quiz = ({
 
     if (status === "correct") {
       onNext();
-      setStatus("none");
-      setSelectedOption(undefined);
       return;
     }
 
@@ -151,6 +131,7 @@ export const Quiz = ({
             setStatus("correct");
             setPercentage((prev) => prev + 100 / challenges.length);
 
+            // Only mark as completed when answered correctly
             const updated = challenges.map((c, i) =>
               i === activeIndex ? { ...c, completed: true, correct: true } : c
             );
@@ -158,10 +139,6 @@ export const Quiz = ({
 
             if (initialPercentage === 100) {
               setHearts((prev) => Math.min(prev + 1, 5));
-            }            // Check if all challenges are completed and show completion screen
-            const allChallengesCompleted = updated.every(c => c.completed);
-            if (allChallengesCompleted) {
-              setStatus("completed");
             }
           })
           .catch(() => toast.error("Something went wrong. Please try again."));
@@ -187,9 +164,7 @@ export const Quiz = ({
     }
   };
 
-
-   if (status === "completed" || !challenge) {
-
+  if (status === "completed" || !challenge) {
     return (
       <>
         {finishAudio}
@@ -207,8 +182,10 @@ export const Quiz = ({
             controlsList="nodownload nofullscreen noremoteplayback"
             onContextMenu={(e) => e.preventDefault()}
           >
-
-            <video
+            <source src="/Mascot_celebration.mp4" type="video/mp4" />
+            Mascot
+          </video>
+          <video
             className="rounded-md block lg:hidden"
             width="300"
             height="300"
@@ -219,7 +196,7 @@ export const Quiz = ({
             disablePictureInPicture
             controlsList="nodownload nofullscreen noremoteplayback"
             onContextMenu={(e) => e.preventDefault()}
-          ></video>
+          >
             <source src="/Mascot_celebration.mp4" type="video/mp4" />
             Mascot
           </video>
@@ -232,18 +209,15 @@ export const Quiz = ({
             <ResultCard variant="hearts" value={hearts} />
             <ResultCard variant="percentage" value={10} />
           </div>
-        </div>        <Footer 
+        </div>
+        <Footer 
           lessonId={lessonId} 
           status="completed" 
-          onCheck={() => {
-            // Only navigate to learn page when continue button is clicked
-            router.push("/learn");
-          }} 
+          onCheck={() => router.push("/learn")} 
         />
       </>
     );
   }
-
 
   const title = challenge.type === "ASSIST"
     ? "Complete the following code"
@@ -288,7 +262,6 @@ export const Quiz = ({
         disabled={pending || !selectedOption}
         status={status}
         onCheck={onContinue}
-        
       />
     </>
   );
