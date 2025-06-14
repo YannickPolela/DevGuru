@@ -56,11 +56,17 @@ export const upsertChallengeProgress = async (challengeId: number) => {
       eq(challengeProgress.id, existingChallengeProgress.id)
     );
 
-    await db.update(userProgress).set({
-      hearts: Math.min(currentUserProgress.hearts + 1, 5),
-      points: currentUserProgress.points + 5,
-    }).where(eq(userProgress.userId, userId));
-
+ if (currentUserProgress.hearts < 5) {
+      await db.update(userProgress).set({
+        hearts: Math.min(currentUserProgress.hearts + 1, 5),
+        points: currentUserProgress.points + 5,
+      }).where(eq(userProgress.userId, userId));
+    } else {
+      // Just update points if hearts are already full
+      await db.update(userProgress).set({
+        points: currentUserProgress.points + 5,
+      }).where(eq(userProgress.userId, userId));
+    }
     revalidatePath("/learn");
     revalidatePath("/lesson");
     revalidatePath("/quests");
