@@ -205,9 +205,9 @@ export const Quiz = ({
             Great job! <br /> You&apos;ve completed the lesson.
           </h1>
           <div className="flex items-center gap-x-4 w-full">
-            <ResultCard variant="points" value={awardedPoints} />
+            <ResultCard variant="points" value={challenges.length * 5} />
             <ResultCard variant="hearts" value={hearts} />
-            <ResultCard variant="percentage" value={10} />
+            <ResultCard variant="percentage" value={challenges.length * 2} />
           </div>
         </div>
         <Footer 
