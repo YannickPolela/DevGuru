@@ -28,6 +28,7 @@ type Props = {
     completed: boolean;
     challengeOptions: typeof challengeOptions.$inferSelect[];
   })[];
+  isPractice?: boolean;
 };
 
 export const Quiz = ({
@@ -35,6 +36,7 @@ export const Quiz = ({
   initialHearts,
   initialLessonId,
   initialLessonChallenges,
+  isPractice
 }: Props) => {
   const { open: openHeartsModal } = useHeartsModal();
   const { open: openPracticeModal } = usePracticeModal();
@@ -135,6 +137,8 @@ export const Quiz = ({
       return;
     }
 
+
+    
     const correctOption = options.find((option) => option.correct);
     if (!correctOption) return;
 
@@ -164,9 +168,9 @@ export const Quiz = ({
               return newAttempts;
             });
 
-            if (initialPercentage === 100) {
-              setHearts((prev) => Math.min(prev + 1, 5));
-            }
+          if (isPractice && hearts < 5) {
+            setHearts((prev) => Math.min(prev + 1, 5));
+          }
           })
           .catch(() => toast.error("Something went wrong. Please try again."));
       });
