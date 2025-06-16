@@ -263,7 +263,7 @@ export const Quiz = ({
       <Header 
         hearts={hearts} 
         percentage={percentage} 
-        hasActiveSubscription={initialPercentage === 100}
+        
       />
       <div className="flex-1">
         <div className="h-full flex items-center justify-center">
