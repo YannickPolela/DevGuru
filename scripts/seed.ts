@@ -115,6 +115,76 @@ const main = async () => {
           description: "Build a mini project to apply what you've learned.",
           order: 10,
         },
+        {
+          id: 11,
+          courseId: 2, // Intermediate course
+          title: "Unit 11",
+          description: "Understanding classes and objects in Python",
+          order: 1,
+        },
+        {
+          id: 12,
+          courseId: 2,
+          title: "Unit 12",
+          description: "Using modules and packages",
+          order: 2,
+        },
+        {
+          id: 13,
+          courseId: 2,
+          title: "Unit 13",
+          description: "Working with dates, times, and built-in libraries",
+          order: 3,
+        },
+        {
+          id: 14,
+          courseId: 2,
+          title: "Unit 14",
+          description: "Writing more efficient code with list comprehensions and generators",
+          order: 4,
+        },
+        {
+          id: 15,
+          courseId: 2,
+          title: "Unit 15",
+          description: "Mastering file handling and working with different file formats (CSV, JSON)",
+          order: 5,
+        },
+        {
+          id: 16,
+          courseId: 2,
+          title: "Unit 16",
+          description: "Introduction to virtual environments and dependency management",
+          order: 6,
+        },
+        {
+          id: 17,
+          courseId: 2,
+          title: "Unit 17",
+          description: "Error handling with custom exceptions",
+          order: 7,
+        },
+        {
+          id: 18,
+          courseId: 2,
+          title: "Unit 18",
+          description: "Exploring functional programming concepts in Python",
+          order: 8,
+        },
+        {
+          id: 19,
+          courseId: 2,
+          title: "Unit 19",
+          description: "Introduction to testing and writing unit tests",
+          order: 9,
+        },
+        {
+          id: 20,
+          courseId: 2,
+          title: "Unit 20",
+          description: "Building a project: A command-line tool or mini app",
+          order: 10,
+        }
       ]);
       
 
@@ -265,6 +335,96 @@ const main = async () => {
           unitId: 5,
           order: 5,
           title: "Unit 5 Review",
+        },
+        {
+          id: 24,
+          unitId: 11,
+          order: 1,
+          title: "Introduction to OOP",
+        },
+        {
+          id: 25,
+          unitId: 11,
+          order: 2,
+          title: "Classes vs Objects",
+        },
+        {
+          id: 26,
+          unitId: 11,
+          order: 3,
+          title: "Attributes and Methods",
+        },
+        {
+          id: 27,
+          unitId: 11,
+          order: 4,
+          title: "__init__ and self",
+        },
+        {
+          id: 28,
+          unitId: 11,
+          order: 5,
+          title: "Unit 11 Review",
+        },
+        {
+          id: 29,
+          unitId: 12,
+          order: 1,
+          title: "Importing Modules",
+        },
+        {
+          id: 30,
+          unitId: 12,
+          order: 2,
+          title: "Creating Your Own Modules",
+        },
+        {
+          id: 31,
+          unitId: 12,
+          order: 3,
+          title: "Package Structure",
+        },
+        {
+          id: 32,
+          unitId: 12,
+          order: 4,
+          title: "__init__.py and __all__",
+        },
+        {
+          id: 33,
+          unitId: 12,
+          order: 5,
+          title: "Unit 12 Review",
+        },
+         {
+          id: 34,
+          unitId: 13,
+          order: 1,
+          title: "datetime Module",
+        },
+        {
+          id: 35,
+          unitId: 13,
+          order: 2,
+          title: "Time Zones with pytz",
+        },
+        {
+          id: 36,
+          unitId: 13,
+          order: 3,
+          title: "Working with timedelta",
+        },
+        {
+          id: 37,
+          unitId: 13,
+          order: 4,
+          title: "Calendar and math Modules",
+        },
+        {
+          id: 38,
+          unitId: 13,
+          order: 5,
+          title: "Unit 13 Review",
         }
       ]);
 
@@ -361,7 +521,162 @@ const main = async () => {
           order: 11,
           question: "Complete the algorithm for making tea:",
           imageSrc: "/pseudocode4.png" 
+        },
+        {
+          id: 12,
+          lessonId: 3,
+          type: "SELECT",
+          order: 12,
+          question: "What is the first step in creating a program?",
+          imageSrc: "/programming8.png"
+        },
+        {
+          id: 13,
+          lessonId: 3,
+          type: "ASSIST",
+          order: 13,
+          question: "Complete this algorithm for finding the largest of three numbers:",
+          imageSrc: "/pseudocode5.png" // Shows incomplete pseudocode
+        },
+        {
+          id: 14,
+          lessonId: 3, // Flow Control Basics
+          type: "INFO",
+          order: 1,
+          question: "<h2>Understanding Flow Control</h2><br><br>Flow control determines the order in which instructions are executed in a program. <br><br>There are three basic structures:<br>1. <strong>Sequence</strong>: Execute statements one after another<br>2. <strong>Selection</strong>: Make decisions with if/else<br>3. <strong>Repetition</strong>: Repeat actions with loops",
+          imageSrc: "/programming9.png"
+        },
+        {
+          id: 15,
+          lessonId: 3,
+          type: "SELECT",
+          order: 2,
+          question: "Which flow control structure would you use to execute different code based on whether a user is logged in?",
+          imageSrc: "/thinking.png"
+        },
+        {
+          id: 16,
+          lessonId: 3,
+          type: "ASSIST",
+          order: 3,
+          question: "Complete this sequence flow for making coffee:",
+          imageSrc: "/pseudocode6.png" // Shows: 1. Boil water -> 2. ? -> 3. Pour water
+        },
+        {
+          id: 17,
+          lessonId: 3,
+          type: "INFO",
+          order: 4,
+          question: "<h2>Pseudocode for Decisions</h2><br>Selection structures use conditions:<br><br><strong>IF</strong> condition <strong>THEN</strong><br>&nbsp;&nbsp;statement(s)<br><strong>END IF</strong><br><br>Example:<br>IF hour > 12 THEN<br>&nbsp;&nbsp;PRINT 'Good afternoon'<br>END IF",
+          imageSrc: "/programming10.png"
+        },
+        {
+          id: 18,
+          lessonId: 3,
+          type: "ASSIST",
+          order: 5,
+          question: "Complete this pseudocode for a login check (missing condition):",
+          imageSrc: "/pseudocode7.png" // Shows: IF ? THEN -> PRINT 'Access granted'
+        },
+        {
+          id: 19,
+          lessonId: 3,
+          type: "SELECT",
+          order: 6,
+          question: "What's the correct order for this breakfast routine?<br>1. Eat food<br>2. Prepare ingredients<br>3. Cook food",
+          imageSrc: "/thinking2.png"
+        },
+        {
+          id: 20,
+          lessonId: 24,
+          type: "INFO",
+          order: 1,
+          question: "<h2>Object-Oriented Programming</h2><br><br>OOP organizes code into <strong>objects</strong> that contain:<br><br>• <strong>Data</strong> (attributes/properties)<br>• <strong>Behavior</strong> (methods/functions)<br><br>Key principles:<br>• Encapsulation<br>• Abstraction<br>• Inheritance<br>• Polymorphism",
+          imageSrc: "/programming11.png"
+        },
+        {
+          id: 21,
+          lessonId: 24,
+          type: "SELECT",
+          order: 2,
+          question: "Which OOP principle hides internal implementation details?",
+          imageSrc: "/thinking.png"
+        },
+        {
+          id: 22,
+          lessonId: 24,
+          type: "ASSIST",
+          order: 3,
+          question: "Complete this class definition:",
+          imageSrc: "/pythoncode.png" // Shows: class Car: → def __init__(self, ?): → self.make = make
+        },
+        {
+          id: 23,
+          lessonId: 24,
+          type: "INFO",
+          order: 4,
+          question: "<h2>Real-World Analogy</h2><br>A <strong>class</strong> is like a blueprint for a house.<br>A <strong>object</strong> is an actual house built from that blueprint.<br><br>Attributes = number of rooms, color<br>Methods = open_door(), turn_on_lights()",
+          imageSrc: "/house-analogy.png"
+        },
+        {
+          id: 24,
+          lessonId: 24,
+          type: "SELECT",
+          order: 5,
+          question: "If 'Dog' is a class, which is an object?",
+          imageSrc: "/thinking.png"
+        },
+        {
+          id: 25,
+          lessonId: 24,
+          type: "ASSIST",
+          order: 6, // Follows existing challenges
+          question: "Complete this method to return the car's info:",
+          imageSrc: "/pythoncode2.png" 
+        
+        },
+
+        {
+          id: 26,
+          lessonId: 25,
+          type: "INFO",
+          order: 1,
+          question: "<h2>Classes vs Objects</h2><br><br>A <strong>class</strong> is a template (like a cookie cutter)<br>An <strong>object</strong> is an instance (like an actual cookie)<br><br>Example:<br>• <code>class Car:</code> → Blueprint<br>• <code>my_car = Car()</code> → Actual vehicle",
+          imageSrc: "/programming6.png"
+        },
+        {
+          id: 27,
+          lessonId: 25,
+          type: "SELECT",
+          order: 2,
+          question: "How many objects can be created from one class?",
+          imageSrc: "/thinking2.png"
+        },
+        {
+          id: 28,
+          lessonId: 25,
+          type: "ASSIST",
+          order: 3,
+          question: "Complete this object instantiation:",
+          imageSrc: "/pythoncode3.png" // Shows: class Book: pass → ? = Book()
+        },
+        {
+          id: 29,
+          lessonId: 25,
+          type: "INFO",
+          order: 4,
+          question: "<h2>Instance Identity</h2><br>Each object has unique:<br>• Memory address<br>• Attribute values<br><br>Example:<br><code>car1 = Car('red')</code><br><code>car2 = Car('blue')</code>",
+          imageSrc: "/programming8.png"
+        },
+        {
+          id: 30,
+          lessonId: 25,
+          type: "SELECT",
+          order: 5,
+          question: "Which is the class in this code?<br><code>class Student:</code><br><code>s = Student()</code>",
+          imageSrc: "/programming4.png"
         }
+
     ]);
 
 
@@ -471,7 +786,225 @@ const main = async () => {
           challengeId: 11,
           correct: false,
           text: "Put in microwave"
-      }
+      },
+      
+      {
+        challengeId: 12,
+        correct: false,
+        text: "Start typing code immediately"
+      },
+      {
+        challengeId: 12,
+        correct: false,
+        text: "Choose the programming language"
+      },
+       {
+        challengeId: 12,
+        correct: true,
+        text: "Understand the problem and plan with pseudocode"
+      },
+      {
+        challengeId: 13,
+        correct: true,
+        text: "Compare num1 and num2, store larger in max"
+      },
+      {
+        challengeId: 13,
+        correct: false,
+        text: "Add all three numbers together"
+      },
+      {
+        challengeId: 13,
+        correct: false,
+        text: "Print 'Hello World'"
+      },
+      {
+    challengeId: 14,
+    correct: true,
+    text: "Proceed"
+  },
+  
+  // SELECT Challenge 15
+  {
+    challengeId: 15,
+    correct: false,
+    text: "Sequence"
+  },
+  {
+    challengeId: 15,
+    correct: true,
+    text: "Selection"
+  },
+  {
+    challengeId: 15,
+    correct: false,
+    text: "Repetition"
+  },
+  
+  // ASSIST Challenge 16
+  {
+    challengeId: 16,
+    correct: true,
+    text: "Add coffee grounds"
+  },
+  {
+    challengeId: 16,
+    correct: false,
+    text: "Drink coffee"
+  },
+  {
+    challengeId: 16,
+    correct: false,
+    text: "Clean the cup"
+  },
+  
+  // INFO Challenge 17
+  {
+    challengeId: 17,
+    correct: true,
+    text: "Proceed"
+  },
+  
+  // ASSIST Challenge 18
+  {
+    challengeId: 18,
+    correct: true,
+    text: "password == correct_password"
+  },
+  {
+    challengeId: 18,
+    correct: false,
+    text: "password = correct_password"
+  },
+  {
+    challengeId: 18,
+    correct: false,
+    text: "password != correct_password"
+  },
+  
+  // SELECT Challenge 19
+  {
+    challengeId: 19,
+    correct: false,
+    text: "1, 2, 3"
+  },
+  {
+    challengeId: 19,
+    correct: true,
+    text: "2, 3, 1"
+  },
+  {
+    challengeId: 19,
+    correct: false,
+    text: "3, 2, 1"
+  },
+
+
+  //Intermediate challenge options
+
+
+   {
+    challengeId: 20,
+    correct: true,
+    text: "Proceed"
+  },
+  
+  // SELECT Challenge 21 (OOP principles)
+  {
+    challengeId: 21,
+    correct: true,
+    text: "Encapsulation"
+  },
+  {
+    challengeId: 21,
+    correct: false,
+    text: "Inheritance"
+  },
+  {
+    challengeId: 21,
+    correct: false,
+    text: "Polymorphism"
+  },
+  
+  // ASSIST Challenge 22 (Class definition)
+  {
+    challengeId: 22,
+    correct: true,
+    text: "make"
+  },
+  {
+    challengeId: 22,
+    correct: false,
+    text: "model"
+  },
+  {
+    challengeId: 22,
+    correct: false,
+    text: "color"
+  },
+  
+  // INFO Challenge 23 (Proceed button)
+  {
+    challengeId: 23,
+    correct: true,
+    text: "Proceed"
+  },
+  
+  // SELECT Challenge 24 (Class vs object)
+  {
+    challengeId: 24,
+    correct: false,
+    text: "Animal"
+  },
+  {
+    challengeId: 24,
+    correct: true,
+    text: "my_dog 'Fido'"
+  },
+  {
+    challengeId: 24,
+    correct: false,
+    text: "Pet"
+  },
+  {
+    challengeId: 25,
+    correct: true,
+    text: `f"{self.make} {self.model}"`,
+    
+  },
+  {
+    challengeId: 25,
+    correct: false,
+    text: `"make model"`,
+  
+  },
+  {
+    challengeId: 25,
+    correct: false,
+    text: `self.make + self.model`,
+    
+  },
+  { challengeId: 26, correct: true, text: "Proceed" },
+  
+  // SELECT Challenge 27
+  { challengeId: 27, correct: false, text: "Only one" },
+  { challengeId: 27, correct: true, text: "Unlimited" },
+  { challengeId: 27, correct: false, text: "Maximum 10" },
+  
+  // ASSIST Challenge 28
+  { challengeId: 28, correct: true, text: "my_book" },
+  { challengeId: 28, correct: false, text: "Book" },
+  { challengeId: 28, correct: false, text: "book_class" },
+  
+  // INFO Challenge 29
+  { challengeId: 29, correct: true, text: "Proceed" },
+  
+  // SELECT Challenge 30
+  { challengeId: 30, correct: true, text: "Student" },
+  { challengeId: 30, correct: false, text: "s" },
+  { challengeId: 30, correct: false, text: "()" }
+      
+
     ]);
 
     ;

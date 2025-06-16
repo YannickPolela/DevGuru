@@ -132,6 +132,8 @@ export const Quiz = ({
 
     if (status === "correct") {
       onNext();
+      setStatus("none");
+      setSelectedOption(undefined);
       return;
     }
 
