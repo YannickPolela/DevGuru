@@ -36,7 +36,6 @@ const LessonPage = async () => {
       initialLessonChallenges={lesson.challenges}
       initialHearts={userProgress.hearts}
       initialPercentage={initialPercentage}   
-      isPractice={isPractice}  
     />
   );
 };
