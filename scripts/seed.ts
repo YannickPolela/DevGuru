@@ -524,7 +524,7 @@ const main = async () => {
         },
         {
           id: 12,
-          lessonId: 3,
+          lessonId: 2,
           type: "SELECT",
           order: 12,
           question: "What is the first step in creating a program?",
@@ -542,7 +542,7 @@ const main = async () => {
           id: 14,
           lessonId: 3, // Flow Control Basics
           type: "INFO",
-          order: 1,
+          order: 14,
           question: "<h2>Understanding Flow Control</h2><br><br>Flow control determines the order in which instructions are executed in a program. <br><br>There are three basic structures:<br>1. <strong>Sequence</strong>: Execute statements one after another<br>2. <strong>Selection</strong>: Make decisions with if/else<br>3. <strong>Repetition</strong>: Repeat actions with loops",
           imageSrc: "/programming9.png"
         },
@@ -550,7 +550,7 @@ const main = async () => {
           id: 15,
           lessonId: 3,
           type: "SELECT",
-          order: 2,
+          order: 15,
           question: "Which flow control structure would you use to execute different code based on whether a user is logged in?",
           imageSrc: "/thinking.png"
         },
@@ -558,7 +558,7 @@ const main = async () => {
           id: 16,
           lessonId: 3,
           type: "ASSIST",
-          order: 3,
+          order: 16,
           question: "Complete this sequence flow for making coffee:",
           imageSrc: "/pseudocode6.png" // Shows: 1. Boil water -> 2. ? -> 3. Pour water
         },
@@ -566,7 +566,7 @@ const main = async () => {
           id: 17,
           lessonId: 3,
           type: "INFO",
-          order: 4,
+          order: 17,
           question: "<h2>Pseudocode for Decisions</h2><br>Selection structures use conditions:<br><br><strong>IF</strong> condition <strong>THEN</strong><br>&nbsp;&nbsp;statement(s)<br><strong>END IF</strong><br><br>Example:<br>IF hour > 12 THEN<br>&nbsp;&nbsp;PRINT 'Good afternoon'<br>END IF",
           imageSrc: "/programming10.png"
         },
@@ -574,7 +574,7 @@ const main = async () => {
           id: 18,
           lessonId: 3,
           type: "ASSIST",
-          order: 5,
+          order: 18,
           question: "Complete this pseudocode for a login check (missing condition):",
           imageSrc: "/pseudocode7.png" // Shows: IF ? THEN -> PRINT 'Access granted'
         },
@@ -582,7 +582,7 @@ const main = async () => {
           id: 19,
           lessonId: 3,
           type: "SELECT",
-          order: 6,
+          order: 19,
           question: "What's the correct order for this breakfast routine?<br>1. Eat food<br>2. Prepare ingredients<br>3. Cook food",
           imageSrc: "/thinking2.png"
         },
@@ -624,7 +624,7 @@ const main = async () => {
           type: "SELECT",
           order: 5,
           question: "If 'Dog' is a class, which is an object?",
-          imageSrc: "/thinking.png"
+          imageSrc: "/thinking2.png"
         },
         {
           id: 25,
