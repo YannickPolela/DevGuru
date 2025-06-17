@@ -47,7 +47,7 @@ export const upsertChallengeProgress = async (challengeId: number) => {
   if (isPractice) {
     // Practice session - only update points, no hearts or gems
     await db.update(userProgress).set({
-      points: currentUserProgress.points + 1,
+      points: currentUserProgress.points + 2,
     }).where(eq(userProgress.userId, userId));
 
     revalidatePaths(lessonId);
@@ -67,10 +67,10 @@ export const upsertChallengeProgress = async (challengeId: number) => {
     });
   }
 
-  // Only give rewards for first-time completion
+  
   await db.update(userProgress).set({
-    points: currentUserProgress.points + 10,
-    gems: currentUserProgress.gems + 1,
+    points: currentUserProgress.points + 5,
+    gems: currentUserProgress.gems + 2,
   }).where(eq(userProgress.userId, userId));
 
   revalidatePaths(lessonId);
