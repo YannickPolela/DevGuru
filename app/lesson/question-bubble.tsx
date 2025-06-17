@@ -7,20 +7,36 @@ type Props = {
 export const QuestionBubble = ({ question }: Props) => {
   return (
     <div className="flex items-center gap-x-4 mb-6">
-      <Image
-        src="/mascot.png"
-        alt="Mascot"
-        height={60}
-        width={60}
-        className="hidden lg:block"
-      />
-      <Image
-        src="/mascot.png"
-        alt="Mascot"
-        height={40}
-        width={40}
-        className="block lg:hidden"
-      />
+      <video
+            className="hidden lg:block rounded-md"
+            width={60}
+            height={60}
+            autoPlay
+            loop
+            muted
+            playsInline
+            disablePictureInPicture
+            controlsList="nodownload nofullscreen noremoteplayback"
+            onContextMenu={(e) => e.preventDefault()}
+          >
+            <source src="/Talking.mp4" type="video/mp4" />
+            Mascot
+          </video>
+      <video
+            className="block:lg hidden rounded-md"
+            width={40}
+            height={40}
+            autoPlay
+            loop
+            muted
+            playsInline
+            disablePictureInPicture
+            controlsList="nodownload nofullscreen noremoteplayback"
+            onContextMenu={(e) => e.preventDefault()}
+          >
+            <source src="/Talking.mp4" type="video/mp4" />
+            Mascot
+          </video>
       <div className="relative py-2 px-4 border-2 rounded-xl text-sm lg:text-base">
         {question}
         <div

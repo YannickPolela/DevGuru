@@ -220,8 +220,8 @@ export const Quiz = ({
           </video>
           <video
             className="rounded-md block lg:hidden"
-            width="300"
-            height="300"
+            width="200"
+            height="200"
             autoPlay
             loop
             muted
