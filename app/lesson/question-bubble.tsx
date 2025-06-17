@@ -23,7 +23,7 @@ export const QuestionBubble = ({ question }: Props) => {
             Mascot
           </video>
       <video
-            className="block:lg hidden rounded-md"
+            className="block lg:hidden rounded-md"
             width={40}
             height={40}
             autoPlay

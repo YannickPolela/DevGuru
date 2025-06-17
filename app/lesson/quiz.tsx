@@ -278,7 +278,7 @@ export const Quiz = ({
                 src={challenge.imageSrc}
                 height={500}
                 width={500}
-                className="mr-1.5 rounded-lg"
+                className="mx-auto rounded-lg"
               />
             )}
             <div>

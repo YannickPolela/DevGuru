@@ -184,7 +184,77 @@ const main = async () => {
           title: "Unit 20",
           description: "Building a project: A command-line tool or mini app",
           order: 10,
-        }
+        },
+          {
+    id: 21,
+    courseId: 3, // Advanced course
+    title: "Unit 21",
+    description: "Deep dive into Python's object model and inheritance",
+    order: 1,
+  },
+  {
+    id: 22,
+    courseId: 3,
+    title: "Unit 22",
+    description: "Understanding decorators and context managers",
+    order: 2,
+  },
+  {
+    id: 23,
+    courseId: 3,
+    title: "Unit 23",
+    description: "Working with concurrency: threads, multiprocessing, and asyncio",
+    order: 3,
+  },
+  {
+    id: 24,
+    courseId: 3,
+    title: "Unit 24",
+    description: "Advanced data structures and algorithmic thinking",
+    order: 4,
+  },
+  {
+    id: 25,
+    courseId: 3,
+    title: "Unit 25",
+    description: "Writing and using Python metaclasses",
+    order: 5,
+  },
+  {
+    id: 26,
+    courseId: 3,
+    title: "Unit 26",
+    description: "Exploring memory management and performance optimization",
+    order: 6,
+  },
+  {
+    id: 27,
+    courseId: 3,
+    title: "Unit 27",
+    description: "Secure coding practices and managing sensitive data",
+    order: 7,
+  },
+  {
+    id: 28,
+    courseId: 3,
+    title: "Unit 28",
+    description: "Integrating with APIs and using HTTP libraries",
+    order: 8,
+  },
+  {
+    id: 29,
+    courseId: 3,
+    title: "Unit 29",
+    description: "Packaging Python projects and publishing to PyPI",
+    order: 9,
+  },
+  {
+    id: 30,
+    courseId: 3,
+    title: "Unit 30",
+    description: "Capstone project: Designing and deploying a full-featured Python application",
+    order: 10,
+  }
       ]);
       
 
@@ -425,6 +495,96 @@ const main = async () => {
           unitId: 13,
           order: 5,
           title: "Unit 13 Review",
+        },
+        {
+          id: 39,
+          unitId: 21,
+          order: 1,
+          title: "Method Resolution Order (MRO)",
+        },
+        {
+          id: 40,
+          unitId: 21,
+          order: 2,
+          title: "Dunder Methods Deep Dive",
+        },
+        {
+          id: 41,
+          unitId: 21,
+          order: 3,
+          title: "Multiple Inheritance Patterns",
+        },
+        {
+          id: 42,
+          unitId: 21,
+          order: 4,
+          title: "Abstract Base Classes",
+        },
+        {
+          id: 43,
+          unitId: 21,
+          order: 5,
+          title: "Unit 21 Review",
+        },
+        {
+          id: 44,
+          unitId: 22,
+          order: 1,
+          title: "Function Decorators",
+        },
+        {
+          id: 45,
+          unitId: 22,
+          order: 2,
+          title: "Class Decorators",
+        },
+        {
+          id: 46,
+          unitId: 22,
+          order: 3,
+          title: "Context Managers with `__enter__`/`__exit__`",
+        },
+        {
+          id: 47,
+          unitId: 22,
+          order: 4,
+          title: "Using `contextlib`",
+        },
+        {
+          id: 48,
+          unitId: 22,
+          order: 5,
+          title: "Unit 22 Review",
+        },
+         {
+          id: 49,
+          unitId: 23,
+          order: 1,
+          title: "Threading vs Multiprocessing",
+        },
+        {
+          id: 50,
+          unitId: 23,
+          order: 2,
+          title: "GIL Limitations",
+        },
+        {
+          id: 51,
+          unitId: 23,
+          order: 3,
+          title: "Asyncio Fundamentals",
+        },
+        {
+          id: 52,
+          unitId: 23,
+          order: 4,
+          title: "Real-World Concurrency Patterns",
+        },
+        {
+          id: 53,
+          unitId: 23,
+          order: 5,
+          title: "Unit 23 Review",
         }
       ]);
 
@@ -675,7 +835,114 @@ const main = async () => {
           order: 5,
           question: "Which is the class in this code?<br><code>class Student:</code><br><code>s = Student()</code>",
           imageSrc: "/programming4.png"
-        }
+        },
+        {
+        id: 55,
+        lessonId: 39,
+        type: "INFO",
+        order: 1,
+        question: "<h2>Understanding MRO</h2><br><br>Python uses C3 linearization to determine method lookup order in inheritance hierarchies.<br><br>Key Properties:<br>• Children precede parents<br>• Left-to-right class order<br>• No duplicate classes",
+        imageSrc: "/programming4.png"
+      },
+      // Challenge 2 - SELECT
+      {
+        id: 56,
+        lessonId: 39,
+        type: "SELECT",
+        order: 2,
+        question: "Given: <code>class D(B, C): pass</code>, what's the MRO?",
+        imageSrc: "/thinking3.png"
+      },
+      // Challenge 3 - ASSIST
+      {
+        id: 57,
+        lessonId: 39,
+        type: "ASSIST",
+        order: 3,
+        question: "Fix this class definition to avoid MRO conflicts:",
+        imageSrc: "/advancedcode.png" // Shows: class A(B, C): pass (where B and C both inherit from D)
+      },
+      // Challenge 4 - SELECT
+      {
+        id: 58,
+        lessonId: 39,
+        type: "SELECT",
+        order: 4,
+        question: "What does <code>ClassName.__mro__</code> return?",
+        imageSrc: "/thinking.png"
+      },
+      // Challenge 5 - ASSIST
+      {
+        id: 59,
+        lessonId: 39,
+        type: "ASSIST",
+        order: 5,
+        question: "Complete this MRO check code:",
+        imageSrc: "/advancedcode2.png" // Shows: print(?.__mro__)
+      },
+      // Challenge 6 - SELECT
+      {
+            id: 60,
+            lessonId: 39,
+            type: "SELECT",
+            order: 6,
+            question: "Which inheritance pattern causes the most MRO complexity?",
+            imageSrc: "/thinking4.png"
+          },
+
+          {
+        id: 61,
+        lessonId: 44,
+        type: "INFO",
+        order: 1,
+        question: "<h2>Decorator Syntax</h2><br>Decorators are functions that:<br>• Take a function as input<br>• Return a modified function<br><br>Equivalent forms:<br>1. <code>@decorator</code><br>2. <code>func = decorator(func)</code>",
+        imageSrc: "/programming12.png"
+      },
+      // Challenge 2 - ASSIST
+      {
+        id: 62,
+        lessonId: 44,
+        type: "ASSIST",
+        order: 2,
+        question: "Complete this decorator skeleton:",
+        imageSrc: "/advancedcode3.png" // Shows: def decorator(func): → ?
+      },
+      // Challenge 3 - SELECT
+      {
+        id: 63,
+        lessonId: 44,
+        type: "SELECT",
+        order: 3,
+        question: "When is the decorator function executed?",
+        imageSrc: "/thinking2.png"
+      },
+      // Challenge 4 - ASSIST
+      {
+        id: 64,
+        lessonId: 44,
+        type: "ASSIST",
+        order: 4,
+        question: "Fix this broken decorator:",
+        imageSrc: "/advancedcode4.png" // Shows: def logger(func): print("Called"); func() (missing return)
+      },
+      // Challenge 5 - SELECT
+      {
+        id: 65,
+        lessonId: 44,
+        type: "SELECT",
+        order: 5,
+        question: "What does <code>@functools.wraps</code> preserve?",
+        imageSrc: "/programming9.png"
+      },
+      // Challenge 6 - ASSIST
+      {
+        id: 66,
+        lessonId: 44,
+        type: "ASSIST",
+        order: 6,
+        question: "Write a decorator that converts result to uppercase:",
+        imageSrc: "/advancedcode5.png" // Shows empty decorator template
+      }
 
     ]);
 
@@ -1002,9 +1269,62 @@ const main = async () => {
   // SELECT Challenge 30
   { challengeId: 30, correct: true, text: "Student" },
   { challengeId: 30, correct: false, text: "s" },
-  { challengeId: 30, correct: false, text: "()" }
+  { challengeId: 30, correct: false, text: "()" },
       
+{ challengeId: 55, correct: true, text: "Proceed" },
+  
+  // SELECT Challenge 56
+  { challengeId: 56, correct: true, text: "D → B → C → object" },
+  { challengeId: 56, correct: false, text: "D → C → B → object" },
+  { challengeId: 56, correct: false, text: "D → B → object → C" },
+  
+  // ASSIST Challenge 57
+  { challengeId: 57, correct: true, text: "class A(C, B): pass" },
+  { challengeId: 57, correct: false, text: "class A(B, C, D): pass" },
+  { challengeId: 57, correct: false, text: "class A: pass" },
+  
+  // SELECT Challenge 58
+  { challengeId: 58, correct: true, text: "A tuple of classes" },
+  { challengeId: 58, correct: false, text: "A list of methods" },
+  { challengeId: 58, correct: false, text: "A dictionary of attributes" },
+  
+  // ASSIST Challenge 59
+  { challengeId: 59, correct: true, text: "ClassName" },
+  { challengeId: 59, correct: false, text: "self" },
+  { challengeId: 59, correct: false, text: "object" },
+  
+  // SELECT Challenge 60
+  { challengeId: 60, correct: true, text: "Diamond inheritance" },
+  { challengeId: 60, correct: false, text: "Single inheritance" },
+  { challengeId: 60, correct: false, text: "Mixins without overlap" },
 
+
+  { challengeId: 61, correct: true, text: "Proceed" },
+  
+  // ASSIST Challenge 62
+  { challengeId: 62, correct: true, text: "def wrapper(*args, **kwargs): return func(*args, **kwargs)\nreturn wrapper" },
+  { challengeId: 62, correct: false, text: "return func" },
+  { challengeId: 62, correct: false, text: "def wrapper(): pass" },
+  
+  // SELECT Challenge 63
+  { challengeId: 63, correct: true, text: "At function definition time" },
+  { challengeId: 63, correct: false, text: "When the decorated function is called" },
+  { challengeId: 63, correct: false, text: "During module import" },
+  
+  // ASSIST Challenge 64
+  { challengeId: 64, correct: true, text: "Add: return wrapper before logger() ends" },
+  { challengeId: 64, correct: false, text: "Change func() to return func()" },
+  { challengeId: 64, correct: false, text: "Remove the print statement" },
+  
+  // SELECT Challenge 65
+  { challengeId: 65, correct: true, text: "Original function metadata" },
+  { challengeId: 65, correct: false, text: "Function argument types" },
+  { challengeId: 65, correct: false, text: "Decorator execution time" },
+  
+  // ASSIST Challenge 66
+  { challengeId: 66, correct: true, text: "def upper(func):\n  def wrapper(*args, **kwargs):\n    return func(*args, **kwargs).upper()\n  return wrapper" },
+  { challengeId: 66, correct: false, text: "def upper(func): return func.upper()" },
+  { challengeId: 66, correct: false, text: "@upper\ndef func(): pass" }
     ]);
 
     ;
