@@ -63,8 +63,8 @@ const QuestsPage = async () => {
                   <Image
                     src="/points.png"
                     alt="Points"
-                    width={60}
-                    height={60}
+                    width={40}
+                    height={40}
                   />
                   <div className="flex flex-col gap-y-2 w-full">
                     <p className="text-neutral-700 text-xl font-bold">

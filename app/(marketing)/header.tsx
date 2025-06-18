@@ -19,7 +19,9 @@ export const Header = () => {
                 </ClerkLoading>
                 <ClerkLoaded>
                     <SignedIn>
-                        <UserButton afterSignOutUrl="/"/>
+                        <div className="pr-4">
+                            <UserButton afterSignOutUrl="/" />
+                        </div>
                     </SignedIn>
                     <SignedOut>
                         <SignInButton mode="modal" fallbackRedirectUrl={"/learn"} signUpForceRedirectUrl={"/learn"}>

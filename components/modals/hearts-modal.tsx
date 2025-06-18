@@ -24,7 +24,13 @@ export const HeartsModal = () => {
 
   const onClick = () => {
     close();
-    router.push("/store");
+    router.push("/shop");
+  };
+
+
+  const goToLearn = () => {
+    close();
+    router.push("/learn");
   };
 
   if (!isClient) {
@@ -37,7 +43,7 @@ export const HeartsModal = () => {
         <DialogHeader>
           <div className="flex items-center w-full justify-center mb-5">
             <Image
-              src="/sad.jpg"
+              src="/broken.png"
               alt="Mascot"
               height={80}
               width={80}
@@ -47,7 +53,7 @@ export const HeartsModal = () => {
             You ran out of hearts!
           </DialogTitle>
           <DialogDescription className="text-center text-base">
-            Practice for more hearts, or purchase them in the store.
+            Purchase them in the store to continue.
           </DialogDescription>
         </DialogHeader>
         <DialogFooter className="mb-4">
@@ -64,7 +70,7 @@ export const HeartsModal = () => {
               variant="primaryOutline" 
               className="w-full" 
               size="lg" 
-              onClick={close}
+              onClick={goToLearn}
             > 
               Go to Learn Page
             </Button>
